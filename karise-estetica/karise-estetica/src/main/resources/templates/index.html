@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karise Estética - Agendamento de Consultas</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    <h1>Bem-vindo ao Karise Estética</h1>
+    <p>Tela inicial!</p>
+</header>
+<main>
+    <section>
+        <ul>
+            <li>
+                <a href="/agendamento/nova" th:href="@{/agendamento/nova}">Agendar nova consulta</a>
+            </li>
+            <li>
+                <a href="/agendamentos" th:href="@{/agendamentos}">Ver agendamentos</a>
+            </li>
+            <li>
+                <a href="/clientes/cadastrar" th:href="@{/clientes/cadastrar}">Cadastrar cliente</a>
+            </li>
+            <li>
+                <a href="/servicos/cadastrar" th:href="@{/servicos/cadastrar}">Cadastrar serviço</a>
+            </li>
+            <li>
+                <a href="/admin/usuarios" th:href="@{/admin/usuarios}">Gerenciar usuários</a>
+            </li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2025 Karise Estética. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>
+
