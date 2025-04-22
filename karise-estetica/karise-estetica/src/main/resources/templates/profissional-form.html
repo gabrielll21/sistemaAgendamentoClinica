@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Profissional</title>
+</head>
+<body>
+<h1>Cadastrar Profissional</h1>
+
+<form th:action="@{/profissionais/salvar}" th:object="${profissional}" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" th:field="*{nome}" required>
+    <br><br>
+
+    <label for="especialidade">Especialidade:</label>
+    <input type="text" id="especialidade" th:field="*{especialidade}" required>
+    <br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+<br>
+<a href="/profissionais/listar" th:href="@{/profissionais/listar}">Voltar para listagem</a>
+</body>
+</html>

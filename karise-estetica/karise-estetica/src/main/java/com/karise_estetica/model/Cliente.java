@@ -1,13 +1,12 @@
 package com.karise_estetica.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 @Data
@@ -16,21 +15,19 @@ import java.time.LocalTime;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @NotBlank(message = "O nome é obrigatório")
+    private String nome;
 
-    private LocalDate data;
+    @Email(message = "Informe um e-mail válido")
+    @NotBlank(message = "O e-mail é obrigatório")
+    @Column(unique = true)
+    private String email;
 
-    private LocalTime hora;
+//    @NotBlank(message = "O CPF é obrigatório")
+//    @Size(min = 11, max = 11, message = "O CPF deve ter 11 dígitos")
+//    @Column(unique = true)
+//    private String cpf;
 
-    @Enumerated(EnumType.STRING)
-    private StatusAgendamento status;
-
-    @ManyToOne
-    private Cliente cliente;
-
-    @ManyToOne
-    private Profissional profissional;
-
-    @ManyToOne
-    private Servico servico;
+    @NotBlank(message = "O telefone é obrigatório")
+    private String telefone;
 }

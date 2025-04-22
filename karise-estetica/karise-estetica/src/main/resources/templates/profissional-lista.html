@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Profissionais</title>
+</head>
+<body>
+<h1>Profissionais Cadastrados</h1>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Especialidade</th>
+    <th>Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="profissional : ${profissionais}">
+    <td th:text="${profissional.id}">1</td>
+    <td th:text="${profissional.nome}">Nome</td>
+    <td th:text="${profissional.especialidade}">Especialidade</td>
+    <td>
+      <a th:href="@{/profissionais/deletar/{id}(id=${profissional.id})}">Excluir</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<br>
+<a href="/profissionais/novo" th:href="@{/profissionais/novo}">Cadastrar novo profissional</a><br>
+<a href="/" th:href="@{/}">Voltar para tela inicial</a>
+</body>
+</html>

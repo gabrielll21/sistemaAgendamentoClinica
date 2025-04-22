@@ -16,7 +16,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user = User
                 .withUsername("root")
-                .password("{noop}gab123") // {noop} diz que a senha não está criptografada
+                .password("{noop}gab123")
                 .roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user);
@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/error").permitAll() // libera o acesso a essas páginas
+                        .requestMatchers("/login", "/error").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
