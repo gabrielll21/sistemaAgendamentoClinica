@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Novo Agendamento</title>
+</head>
+<body>
+<h1>Agendar Consulta</h1>
+
+<form th:action="@{/agendamentos/salvar}" th:object="${agendamento}" method="post">
+  <label>Data:</label>
+  <input type="date" th:field="*{data}" required><br><br>
+
+  <label>Hora:</label>
+  <input type="time" th:field="*{hora}" required><br><br>
+
+  <label>Status:</label>
+  <select th:field="*{status}" required>
+    <option th:value="AGENDADO">Agendado</option>
+    <option th:value="CANCELADO">Cancelado</option>
+    <option th:value="CONCLUIDO">Concluído</option>
+  </select><br><br>
+
+  <label>Cliente:</label>
+  <select th:field="*{cliente}" required>
+    <option th:each="cliente : ${clientes}"
+            th:value="${cliente.id}"
+            th:text="${cliente.nome}">Cliente</option>
+  </select><br><br>
+
+  <label>Profissional:</label>
+  <select th:field="*{profissional}" required>
+    <option th:each="prof : ${profissionais}"
+            th:value="${prof.id}"
+            th:text="${prof.nome}">Profissional</option>
+  </select><br><br>
+
+  <label>Serviço:</label>
+  <select th:field="*{servico}" required>
+    <option th:each="serv : ${servicos}"
+            th:value="${serv.id}"
+            th:text="${serv.nome}">Serviço</option>
+  </select><br><br>
+
+  <button type="submit">Salvar</button>
+</form>
+
+<a href="/agendamentos/listar" th:href="@{/agendamentos/listar}">Voltar para lista</a>
+</body>
+</html>

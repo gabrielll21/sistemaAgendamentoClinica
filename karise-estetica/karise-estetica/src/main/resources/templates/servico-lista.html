@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Serviços</title>
+</head>
+<body>
+<h1>Serviços Cadastrados</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Duração (min)</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="servico : ${servicos}">
+        <td th:text="${servico.nome}"></td>
+        <td th:text="${servico.descricao}"></td>
+        <td th:text="${servico.preco}"></td>
+        <td th:text="${servico.duracaoEmMinutos}"></td>
+        <td>
+            <a th:href="@{'/servicos/deletar/' + ${servico.id}}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/servicos/novo" th:href="@{/servicos/novo}">Cadastrar novo serviço</a>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Agendamentos</title>
+</head>
+<body>
+<h1>Agendamentos</h1>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Data</th>
+    <th>Hora</th>
+    <th>Status</th>
+    <th>Cliente</th>
+    <th>Profissional</th>
+    <th>Serviço</th>
+    <th>Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="agendamento : ${agendamentos}">
+    <td th:text="${agendamento.id}"></td>
+    <td th:text="${agendamento.data}"></td>
+    <td th:text="${agendamento.hora}"></td>
+    <td th:text="${agendamento.status}"></td>
+    <td th:text="${agendamento.cliente.nome}"></td>
+    <td th:text="${agendamento.profissional.nome}"></td>
+    <td th:text="${agendamento.servico.nome}"></td>
+    <td>
+      <a th:href="@{'/agendamentos/deletar/' + ${agendamento.id}}">Deletar</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<a href="/agendamentos/nova" th:href="@{/agendamentos/nova}">Novo Agendamento</a>
+</body>
+</html>
