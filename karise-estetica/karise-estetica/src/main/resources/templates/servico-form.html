@@ -1,32 +1,96 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Cadastrar Serviço</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Criar Serviço - Karise Estética</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-<h1>Cadastro de Serviço</h1>
+<body class="font-sans bg-[#f8f8f8] text-gray-800">
 
-<form th:action="@{/servicos/salvar}" th:object="${servico}" method="post">
-    <label for="nome">Nome do Serviço:</label>
-    <input type="text" id="nome" th:field="*{nome}" required>
-    <br><br>
+<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold">
+    <div class="flex justify-center items-center gap-2">
+        <span>KARISE ESTÉTICA</span>
+    </div>
+</header>
 
-    <label for="descricao">Descrição:</label>
-    <textarea id="descricao" th:field="*{descricao}" required></textarea>
-    <br><br>
+<div class="flex h-[calc(100vh-80px)]">
+    <!-- Menu lateral -->
+    <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
+        <ul class="space-y-6 text-[#f28c28] font-medium">
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="home"></i> <a th:href="@{/}">Início</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="calendar-days"></i> <a th:href="@{/agendamentos}">Agenda</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="users"></i> <a th:href="@{/clientes/listar}">Clientes</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="scissors"></i> <a th:href="@{/servicos/listar}">Serviços</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="settings"></i> Configurações
+            </li>
+        </ul>
+    </nav>
 
-    <label for="preco">Preço:</label>
-    <input type="number" id="preco" step="0.01" th:field="*{preco}" required>
-    <br><br>
+    <!-- Conteúdo principal -->
+    <main class="flex-1 p-10 overflow-y-auto">
+        <div class="max-w-xl mx-auto">
 
-    <label for="duracaoEmMinutos">Duração (minutos):</label>
-    <input type="number" id="duracaoEmMinutos" th:field="*{duracaoEmMinutos}" required>
-    <br><br>
+            <!-- Título -->
+            <div class="text-xl text-[#e65100] font-semibold mb-6 flex items-center justify-center gap-2">
+                <i data-lucide="plus-circle"></i> Criar Novo Serviço
+            </div>
 
-    <button type="submit">Salvar</button>
-</form>
+            <!-- Formulário -->
+            <form th:action="@{/servicos/salvar}" th:object="${servico}" method="post"
+                  class="bg-white p-8 rounded-lg shadow-md space-y-6 form-agendamento">
 
-<a href="/servicos/listar" th:href="@{/servicos/listar}">Voltar para lista de serviços</a>
+                <div>
+                    <label for="nome" class="block font-bold mb-2">Nome do Serviço:</label>
+                    <input type="text" id="nome" th:field="*{nome}" required
+                           class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none"/>
+                </div>
+
+                <div>
+                    <label for="descricao" class="block font-bold mb-2">Descrição:</label>
+                    <textarea id="descricao" th:field="*{descricao}" required
+                              class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                    <label for="preco" class="block font-bold mb-2">Preço (R$):</label>
+                    <input type="number" id="preco" step="0.01" th:field="*{preco}" required
+                           class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none"/>
+                </div>
+
+                <div>
+                    <label for="duracaoEmMinutos" class="block font-bold mb-2">Duração (minutos):</label>
+                    <input type="number" id="duracaoEmMinutos" th:field="*{duracaoEmMinutos}" required
+                           class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none"/>
+                </div>
+
+                <button type="submit"
+                        class="w-full py-3 bg-[#ff9800] text-white rounded-md font-semibold flex justify-center items-center gap-2 hover:bg-[#fb8c00] transition duration-300">
+                    <i data-lucide="check-circle"></i> Cadastrar Serviço
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <a th:href="@{/servicos/listar}" class="text-[#e69320] hover:underline">Voltar para lista de serviços</a>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+
 </body>
 </html>

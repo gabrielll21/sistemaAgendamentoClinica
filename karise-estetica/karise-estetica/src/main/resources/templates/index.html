@@ -15,7 +15,6 @@
 </header>
 
 <div class="flex h-[calc(100vh-80px)]">
-    <!-- Menu lateral -->
     <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
         <ul class="space-y-6 text-[#f28c28] font-medium">
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
@@ -24,19 +23,19 @@
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="calendar-days"></i>
-                <a href="/agendamentos" th:href="@{/agendamentos/listar}">Agenda</a>
+                <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="users"></i>
-                <a href="/clientes" th:href="@{/clientes/listar}">Clientes</a>
+                <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="scissors"></i>
-                <a href="/servicos" th:href="@{/servicos/listar}">Serviços</a>
+                <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="settings"></i>
-                <a href="/profissionais" th:href="@{/profissionais/listar}">Profissionais</a>
+                <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
             </li>
         </ul>
     </nav>
@@ -53,44 +52,3 @@
 </script>
 </body>
 </html>
-
-<!--<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karise Estética - Agendamento de Consultas</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-<header>
-    <h1>Bem-vindo ao Karise Estética</h1>
-    <p>Tela inicial!</p>
-</header>
-<main>
-    <section>
-        <ul>
-            <li>
-                <a href="/agendamento/nova" th:href="@{/agendamento/nova}">Agendar nova consulta</a>
-            </li>
-            <li>
-                <a href="/agendamentos" th:href="@{/agendamentos}">Ver agendamentos</a>
-            </li>
-            <li>
-                <a href="/clientes/novo" th:href="@{/clientes/novo}">Cadastrar cliente</a>
-            </li>
-            <li>
-                <a href="/servicos/cadastrar" th:href="@{/servicos/cadastrar}">Cadastrar serviço</a>
-            </li>
-            <li>
-                <a href="/admin/usuarios" th:href="@{/admin/usuarios}">Gerenciar usuários</a>
-            </li>
-        </ul>
-    </section>
-</main>
-<footer>
-    <p>&copy; 2025 Karise Estética. Todos os direitos reservados.</p>
-</footer>
-</body>
-</html>-->
-

@@ -1,50 +1,110 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Novo Agendamento</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agendamento - Karise Estética</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-<h1>Agendar Consulta</h1>
+<body class="font-sans bg-[#fffdf9] text-gray-800">
 
-<form th:action="@{/agendamentos/salvar}" th:object="${agendamento}" method="post">
-  <label>Data:</label>
-  <input type="date" th:field="*{data}" required><br><br>
+<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold">
+  <span>KARISE ESTÉTICA</span>
+</header>
 
-  <label>Hora:</label>
-  <input type="time" th:field="*{hora}" required><br><br>
+<div class="flex h-[calc(100vh-80px)]">
 
-  <label>Status:</label>
-  <select th:field="*{status}" required>
-    <option th:value="AGENDADO">Agendado</option>
-    <option th:value="CANCELADO">Cancelado</option>
-    <option th:value="CONCLUIDO">Concluído</option>
-  </select><br><br>
+  <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
+    <ul class="space-y-6 text-[#f28c28] font-medium">
+      <li><a href="/" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="home"></i> Início</a></li>
+      <li><a href="/agendamentos/listar" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="calendar-days"></i> Agenda</a></li>
+      <li><a href="/clientes/listar" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="users"></i> Clientes</a></li>
+      <li><a href="/servicos/listar" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="scissors"></i> Serviços</a></li>
+      <li><a href="/configuracoes" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="settings"></i> Configurações</a></li>
+    </ul>
+  </nav>
 
-  <label>Cliente:</label>
-  <select th:field="*{cliente}" required>
-    <option th:each="cliente : ${clientes}"
-            th:value="${cliente.id}"
-            th:text="${cliente.nome}">Cliente</option>
-  </select><br><br>
+  <main class="flex-1 p-10 overflow-y-auto">
+    <div class="max-w-xl mx-auto">
+      <div class="text-xl text-[#f28c28] font-semibold mb-6 flex items-center justify-center gap-2">
+        <i data-lucide="plus-circle"></i> Novo Agendamento
+      </div>
 
-  <label>Profissional:</label>
-  <select th:field="*{profissional}" required>
-    <option th:each="prof : ${profissionais}"
-            th:value="${prof.id}"
-            th:text="${prof.nome}">Profissional</option>
-  </select><br><br>
+      <form th:action="@{/agendamentos/salvar}" th:object="${agendamento}" method="post"
+            class="bg-white p-8 rounded-lg shadow-md space-y-6">
 
-  <label>Serviço:</label>
-  <select th:field="*{servico}" required>
-    <option th:each="serv : ${servicos}"
-            th:value="${serv.id}"
-            th:text="${serv.nome}">Serviço</option>
-  </select><br><br>
+        <div>
+          <label class="block font-bold mb-2">Data:</label>
+          <input type="date" th:field="*{data}" required
+                 class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none" />
+        </div>
 
-  <button type="submit">Salvar</button>
-</form>
+        <div>
+          <label class="block font-bold mb-2">Hora:</label>
+          <input type="time" th:field="*{hora}" required
+                 class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none" />
+        </div>
 
-<a href="/agendamentos/listar" th:href="@{/agendamentos/listar}">Voltar para lista</a>
+        <div>
+          <label class="block font-bold mb-2">Status:</label>
+          <select th:field="*{status}" required
+                  class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none">
+            <option value="AGENDADO">Agendado</option>
+            <option value="CANCELADO">Cancelado</option>
+            <option value="CONCLUIDO">Concluído</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold mb-2">Cliente:</label>
+          <select th:field="*{cliente}" required
+                  class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none">
+            <option value="">Selecione o cliente</option>
+            <option th:each="cliente : ${clientes}"
+                    th:value="${cliente.id}"
+                    th:text="${cliente.nome}">Cliente</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold mb-2">Profissional:</label>
+          <select th:field="*{profissional}" required
+                  class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none">
+            <option value="">Selecione o profissional</option>
+            <option th:each="prof : ${profissionais}"
+                    th:value="${prof.id}"
+                    th:text="${prof.nome}">Profissional</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold mb-2">Serviço:</label>
+          <select th:field="*{servico}" required
+                  class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none">
+            <option value="">Selecione o serviço</option>
+            <option th:each="serv : ${servicos}"
+                    th:value="${serv.id}"
+                    th:text="${serv.nome}">Serviço</option>
+          </select>
+        </div>
+
+        <button type="submit"
+                class="w-full py-3 bg-[#f4a734] text-white rounded-md font-semibold flex justify-center items-center gap-2 hover:bg-[#e69320] transition duration-300">
+          <i data-lucide="check-circle"></i> Agendar
+        </button>
+      </form>
+
+      <a href="/agendamentos/listar" th:href="@{/agendamentos/listar}"
+         class="block text-center mt-4 text-gray-500 hover:underline">Voltar para lista</a>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  lucide.createIcons();
+</script>
+
 </body>
 </html>
