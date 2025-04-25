@@ -26,9 +26,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/error").permitAll()
+                        .requestMatchers("/login", "/h2-console/**", "/error").permitAll() // libera o console do H2
                         .anyRequest().authenticated()
                 )
+                .headers(headers -> headers.frameOptions().disable()) // permite o uso de <iframe> no H2
+                .csrf(csrf -> csrf.disable()) // desativa CSRF para não bloquear o console
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
