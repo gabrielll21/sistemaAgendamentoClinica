@@ -7,21 +7,35 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="font-sans bg-[#fffdf9] text-gray-800">
+<body class="bg-[#fffdf9] text-gray-800 font-sans">
 
 <header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold">
   <span>KARISE ESTÉTICA</span>
 </header>
 
 <div class="flex h-[calc(100vh-80px)]">
-
   <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
     <ul class="space-y-6 text-[#f28c28] font-medium">
-      <li><a href="/" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="home"></i> Início</a></li>
-      <li><a href="/agendamentos/listar" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="calendar-days"></i> Agenda</a></li>
-      <li><a href="/clientes/listar" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="users"></i> Clientes</a></li>
-      <li><a href="/servicos/listar" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="scissors"></i> Serviços</a></li>
-      <li><a href="/profissionais" class="flex items-center gap-2 hover:text-[#e69320]"><i data-lucide="settings"></i> Configurações</a></li>
+      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+        <i data-lucide="home"></i>
+        <a href="/" th:href="@{/}">Início</a>
+      </li>
+      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+        <i data-lucide="calendar-days"></i>
+        <a href="/agendamentos/listar" th:href="@{/agendamentos/listar}">Agenda</a>
+      </li>
+      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+        <i data-lucide="users"></i>
+        <a href="/clientes/listar" th:href="@{/clientes/listar}">Clientes</a>
+      </li>
+      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+        <i data-lucide="scissors"></i>
+        <a href="/servicos/listar" th:href="@{/servicos/listar}">Serviços</a>
+      </li>
+      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+        <i data-lucide="settings"></i>
+        <a href="/profissionais/listar" th:href="@{/profissionais/listar}">Profissionais</a>
+      </li>
     </ul>
   </nav>
 
@@ -97,7 +111,6 @@
 
       <a href="/agendamentos/listar" th:href="@{/agendamentos/listar}"
          class="block text-center mt-4 text-gray-500 hover:underline">Voltar para lista</a>
-
     </div>
   </main>
 </div>
