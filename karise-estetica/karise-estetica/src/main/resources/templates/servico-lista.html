@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Karise Estética - Lista de Serviços</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -58,7 +58,7 @@
             <tr>
                 <th class="px-6 py-4 text-left">Nome</th>
                 <th class="px-6 py-4 text-left">Descrição</th>
-                <th class="px-6 py-4 text-left">Preço (R$)</th>
+                <th class="px-6 py-4 text-left">Preço</th>
                 <th class="px-6 py-4 text-left">Duração (min)</th>
                 <th class="px-6 py-4 text-center">Ações</th>
             </tr>
@@ -70,11 +70,7 @@
                 <td class="px-6 py-4" th:text="${servico.preco}">Preço</td>
                 <td class="px-6 py-4" th:text="${servico.duracaoEmMinutos}">Duração</td>
                 <td class="px-6 py-4 flex justify-center gap-4">
-                    <a th:href="@{/servicos/editar/{id}(id=${servico.id})}"
-                       class="text-blue-600 hover:underline">Editar</a>
-                    <a th:href="@{/servicos/deletar/{id}(id=${servico.id})}"
-                       onclick="return confirm('Tem certeza que deseja excluir este serviço?')"
-                       class="text-red-600 hover:underline">Excluir</a>
+                    <a th:href="@{'/servicos/deletar/' + ${servico.id}}" class="text-red-600 hover:underline">Excluir</a>
                 </td>
             </tr>
             </tbody>

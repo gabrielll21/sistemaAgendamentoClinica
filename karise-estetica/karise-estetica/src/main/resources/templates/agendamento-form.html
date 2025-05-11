@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Karise Estética - Agendamento</title>
+  <title>Agendamento - Karise Estética</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -22,19 +22,19 @@
       </li>
       <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
         <i data-lucide="calendar-days"></i>
-        <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
+        <a href="/agendamentos/listar" th:href="@{/agendamentos/listar}">Agenda</a>
       </li>
       <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
         <i data-lucide="users"></i>
-        <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
+        <a href="/clientes/listar" th:href="@{/clientes/listar}">Clientes</a>
       </li>
       <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
         <i data-lucide="scissors"></i>
-        <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
+        <a href="/servicos/listar" th:href="@{/servicos/listar}">Serviços</a>
       </li>
       <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
         <i data-lucide="settings"></i>
-        <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
+        <a href="/profissionais/listar" th:href="@{/profissionais/listar}">Profissionais</a>
       </li>
     </ul>
   </nav>

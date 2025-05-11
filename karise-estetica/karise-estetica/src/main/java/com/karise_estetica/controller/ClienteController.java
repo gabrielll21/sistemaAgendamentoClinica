@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -33,10 +35,16 @@ public class ClienteController {
         return "redirect:/clientes/listar";
     }
 
-
     @GetMapping("/listar")
-    public String listarClientes(Model model) {
-        model.addAttribute("clientes", clienteService.listarTodos());
+    public String listarClientes(@RequestParam(value = "q", required = false) String busca, Model model) {
+        List<Cliente> clientes;
+        if (busca != null && !busca.trim().isEmpty()) {
+            clientes = clienteService.buscarPorNome(busca);
+        } else {
+            clientes = clienteService.listarTodos();
+        }
+        model.addAttribute("clientes", clientes);
+        model.addAttribute("q", busca); // mantém o termo no input
         return "cliente-lista";
     }
 

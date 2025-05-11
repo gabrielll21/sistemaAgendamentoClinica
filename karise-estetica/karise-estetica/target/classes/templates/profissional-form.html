@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Karise Estética - Cadastrar Profissional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#fffdf9] text-gray-800 font-sans">
+<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold">
+    <div class="flex justify-center items-center gap-2">
+        <span>KARISE ESTÉTICA</span>
+    </div>
+</header>
+
+<div class="flex h-[calc(100vh-80px)]">
+    <!-- Menu Lateral -->
+    <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
+        <ul class="space-y-6 text-[#f28c28] font-medium">
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="home"></i>
+                <a href="/" th:href="@{/}">Início</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="calendar-days"></i>
+                <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="users"></i>
+                <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="scissors"></i>
+                <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="settings"></i>
+                <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <main class="flex-grow p-8 overflow-y-auto">
+        <div class="max-w-lg mx-auto bg-white shadow-md rounded p-8">
+            <div class="flex items-center gap-2 text-2xl font-semibold text-[#f28c28] mb-6">
+                <i data-lucide="user-plus"></i>
+                <span>Cadastrar Novo Profissional</span>
+            </div>
+            <form th:action="@{/profissionais/salvar}" th:object="${profissional}" method="post" class="space-y-4">
+                <div>
+                    <label class="block font-semibold mb-1">Nome:</label>
+                    <input type="text" th:field="*{nome}" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-50 focus:outline-none"/>
+                    <div class="text-red-500 mt-1" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Especialidade:</label>
+                    <input type="text" th:field="*{especialidade}" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-50 focus:outline-none"/>
+                    <div class="text-red-500 mt-1" th:if="${#fields.hasErrors('especialidade')}" th:errors="*{especialidade}"></div>
+                </div>
+                <button type="submit"
+                        class="w-full bg-[#f4a734] text-white py-2 rounded-md font-bold hover:bg-[#e69320] transition duration-300">
+                    Salvar
+                </button>
+                <a href="/profissionais/listar" th:href="@{/profissionais/listar}"
+                   class="block text-center text-gray-500 hover:text-gray-800 mt-4">
+                    Voltar para lista
+                </a>
+            </form>
+        </div>
+    </main>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>
+

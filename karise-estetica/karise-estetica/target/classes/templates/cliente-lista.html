@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Lista de Clientes - Karise Estética</title>
+    <title>Karise Estética - Lista de Clientes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -53,6 +53,17 @@
             </a>
         </div>
 
+        <!-- Formulário de Busca -->
+        <form th:action="@{/clientes/listar}" method="get" class="flex items-center gap-2 mb-6 max-w-md">
+            <input type="text" name="q" th:value="${q}" placeholder="Buscar por nome..."
+                   class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]" />
+            <button type="submit"
+                    class="px-4 py-2 bg-[#f4a734] text-white rounded-r-md hover:bg-[#e69320] transition">
+                Buscar
+            </button>
+        </form>
+
+        <!-- Tabela de Clientes -->
         <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
             <thead class="bg-[#fff3e0] text-[#f28c28]">
             <tr>
