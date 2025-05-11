@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Karise Estética - Administração</title>
+
+    <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- FullCalendar CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/locales/pt-br.js"></script>
 </head>
 <body class="bg-[#fffdf9] text-gray-800 font-sans">
 <header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold">
@@ -40,15 +47,40 @@
         </ul>
     </nav>
 
-    <!-- Conteúdo principal -->
-    <main class="flex-grow p-8">
-        <h2 class="text-xl font-semibold">Bem-vindo à administração!</h2>
-        <p class="mt-4">Utilize o menu lateral para acessar as funcionalidades.</p>
+    <!-- Conteúdo principal com calendário -->
+    <main class="flex-grow p-8 overflow-auto">
+        <h2 class="text-xl font-semibold mb-4">Agenda de Agendamentos</h2>
+        <div id="calendar" class="bg-white p-6 shadow rounded-lg"></div>
     </main>
 </div>
 
 <script>
     lucide.createIcons();
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'pt-br',
+            events: 'agendamentos/api/agendamentos', // URL configurada no Spring
+            height: 'auto',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            buttonText: {
+                today: 'Hoje',
+                month: 'Mês',
+                week: 'Semana',
+                day: 'Dia'
+            },
+            eventColor: '#f28c28'
+        });
+
+        calendar.render();
+    });
 </script>
 </body>
 </html>

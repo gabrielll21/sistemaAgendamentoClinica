@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Criar Serviço - Karise Estética</title>
+    <title>Karise Estética - Criar Serviço</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -20,19 +20,24 @@
     <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
         <ul class="space-y-6 text-[#f28c28] font-medium">
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="home"></i> <a th:href="@{/}">Início</a>
+                <i data-lucide="home"></i>
+                <a href="/" th:href="@{/}">Início</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="calendar-days"></i> <a th:href="@{/agendamentos}">Agenda</a>
+                <i data-lucide="calendar-days"></i>
+                <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="users"></i> <a th:href="@{/clientes/listar}">Clientes</a>
+                <i data-lucide="users"></i>
+                <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="scissors"></i> <a th:href="@{/servicos/listar}">Serviços</a>
+                <i data-lucide="scissors"></i>
+                <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="settings"></i> Configurações
+                <i data-lucide="settings"></i>
+                <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
             </li>
         </ul>
     </nav>

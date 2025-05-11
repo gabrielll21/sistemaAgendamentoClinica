@@ -13,6 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.stream.Collectors;
+
+
 @Controller
 @RequestMapping("/agendamentos")
 public class AgendamentoController {
@@ -63,4 +70,19 @@ public class AgendamentoController {
         agendamentoService.deletar(id);
         return "redirect:/agendamentos/listar";
     }
+
+    @GetMapping("/api/agendamentos")
+    @ResponseBody
+    public List<Map<String, String>> obterAgendamentos() {
+        return agendamentoService.listarTodos().stream().map(agendamento -> {
+            LocalDateTime dateTime = LocalDateTime.of(agendamento.getData(), agendamento.getHora());
+            Map<String, String> evento = new HashMap<>();
+            evento.put("title", agendamento.getServico().getNome() + " - " + agendamento.getCliente().getNome());
+            evento.put("start", dateTime.format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            return evento;
+        }).collect(Collectors.toList());
+    }
+
+
+
 }
