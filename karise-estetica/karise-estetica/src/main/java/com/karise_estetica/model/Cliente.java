@@ -3,10 +3,10 @@ package com.karise_estetica.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.karise_estetica.validation.CPF;
 
 @Entity
 @Data
@@ -25,10 +25,10 @@ public class Cliente {
     @Column(unique = true)
     private String email;
 
-// @NotBlank(message = "O CPF é obrigatório")
-// @Size(min = 11, max = 11, message = "O CPF deve ter 11 dígitos")
-// @Column(unique = true)
-// private String cpf;
+    @CPF(message = "CPF inválido")
+    @NotBlank(message = "O CPF é obrigatório")
+    @Column(unique = true)
+    private String cpf;
 
     @NotBlank(message = "O telefone é obrigatório")
     private String telefone;

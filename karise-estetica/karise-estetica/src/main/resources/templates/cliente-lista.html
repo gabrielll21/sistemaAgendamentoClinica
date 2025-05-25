@@ -69,6 +69,7 @@
             <tr>
                 <th class="px-6 py-4 text-left">Nome</th>
                 <th class="px-6 py-4 text-left">Email</th>
+                <th class="px-6 py-4 text-left">CPF</th>         <!-- coluna nova -->
                 <th class="px-6 py-4 text-left">Telefone</th>
                 <th class="px-6 py-4 text-center">Ações</th>
             </tr>
@@ -77,14 +78,19 @@
             <tr th:each="cliente : ${clientes}" class="border-b hover:bg-gray-50">
                 <td class="px-6 py-4" th:text="${cliente.nome}">Nome</td>
                 <td class="px-6 py-4" th:text="${cliente.email}">Email</td>
+                <td class="px-6 py-4" th:text="${cliente.cpf}">000.000.000-00</td> <!-- mostra o CPF -->
                 <td class="px-6 py-4" th:text="${cliente.telefone}">Telefone</td>
                 <td class="px-6 py-4 flex justify-center gap-4">
-                    <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}" class="text-blue-600 hover:underline">Editar</a>
-                    <a th:href="@{/clientes/excluir/{id}(id=${cliente.id})}" onclick="return confirm('Tem certeza que deseja excluir?')" class="text-red-600 hover:underline">Excluir</a>
+                    <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}"
+                       class="text-blue-600 hover:underline">Editar</a>
+                    <a th:href="@{/clientes/excluir/{id}(id=${cliente.id})}"
+                       onclick="return confirm('Tem certeza que deseja excluir?')"
+                       class="text-red-600 hover:underline">Excluir</a>
                 </td>
             </tr>
             </tbody>
         </table>
+
     </main>
 </div>
 
