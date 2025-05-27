@@ -24,6 +24,16 @@ public class ClienteController {
         return "cliente-form";
     }
 
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEdicao(@PathVariable Long id, Model model) {
+        clienteService.buscarPorId(id)
+                .ifPresentOrElse(
+                        cliente -> model.addAttribute("cliente", cliente),
+                        () -> model.addAttribute("error", "Cliente não encontrado")
+                );
+        return "cliente-form";
+    }
+
     @PostMapping("/salvar")
     public String salvarCliente(@Valid @ModelAttribute("cliente") Cliente cliente,
                                 BindingResult result,
@@ -48,8 +58,8 @@ public class ClienteController {
         return "cliente-lista";
     }
 
-    @GetMapping("/deletar/{id}")
-    public String deletarCliente(@PathVariable Long id) {
+    @GetMapping("/excluir/{id}")
+    public String excluirCliente(@PathVariable Long id) {
         clienteService.deletar(id);
         return "redirect:/clientes/listar";
     }

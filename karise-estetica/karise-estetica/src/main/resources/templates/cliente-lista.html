@@ -82,10 +82,14 @@
                 <td class="px-6 py-4" th:text="${cliente.telefone}">Telefone</td>
                 <td class="px-6 py-4 flex justify-center gap-4">
                     <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}"
-                       class="text-blue-600 hover:underline">Editar</a>
+                       class="text-blue-600 hover:underline">
+                        Editar
+                    </a>
                     <a th:href="@{/clientes/excluir/{id}(id=${cliente.id})}"
-                       onclick="return confirm('Tem certeza que deseja excluir?')"
-                       class="text-red-600 hover:underline">Excluir</a>
+                       onclick="return confirm('Tem certeza que deseja excluir este cliente?')"
+                       class="text-red-600 hover:underline">
+                        Excluir
+                    </a>
                 </td>
             </tr>
             </tbody>

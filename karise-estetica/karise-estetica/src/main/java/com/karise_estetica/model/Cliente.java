@@ -3,6 +3,7 @@ package com.karise_estetica.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,8 +26,9 @@ public class Cliente {
     @Column(unique = true)
     private String email;
 
-    @CPF(message = "CPF inválido")
+    //@CPF(message = "CPF inválido")
     @NotBlank(message = "O CPF é obrigatório")
+    @Size(min = 11, max = 14, message = "O CPF deve ter entre 11 e 14 caracteres (incluindo pontos)")
     @Column(unique = true)
     private String cpf;
 
