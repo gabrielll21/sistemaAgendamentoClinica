@@ -14,34 +14,40 @@ import org.springframework.web.bind.annotation.*;
 public class ProfissionalController {
 
     @Autowired
-    private ProfissionalService profissionalService;
+    private ProfissionalService service;
 
     @GetMapping("/novo")
-    public String mostrarFormularioCadastro(Model model) {
+    public String novo(Model model) {
         model.addAttribute("profissional", new Profissional());
         return "profissional-form";
     }
 
     @PostMapping("/salvar")
-    public String salvarProfissional(@Valid @ModelAttribute("profissional") Profissional profissional,
-                                     BindingResult result,
-                                     Model model) {
+    public String salvar(@Valid @ModelAttribute("profissional") Profissional prof,
+                         BindingResult result) {
         if (result.hasErrors()) {
             return "profissional-form";
         }
-        profissionalService.salvar(profissional);
+        service.salvar(prof);
         return "redirect:/profissionais/listar";
     }
 
     @GetMapping("/listar")
-    public String listarProfissionais(Model model) {
-        model.addAttribute("profissionais", profissionalService.listarTodos());
+    public String listar(Model model) {
+        model.addAttribute("profissionais", service.listarTodos());
         return "profissional-lista";
     }
 
-    @GetMapping("/deletar/{id}")
-    public String deletarProfissional(@PathVariable Long id) {
-        profissionalService.deletar(id);
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Long id, Model model) {
+        service.buscarPorId(id)
+                .ifPresent(p -> model.addAttribute("profissional", p));
+        return "profissional-form";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Long id) {
+        service.deletar(id);
         return "redirect:/profissionais/listar";
     }
 }

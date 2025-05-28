@@ -15,7 +15,6 @@
 </header>
 
 <div class="flex h-[calc(100vh-80px)]">
-    <!-- Menu Lateral -->
     <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
         <ul class="space-y-6 text-[#f28c28] font-medium">
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
@@ -41,7 +40,6 @@
         </ul>
     </nav>
 
-    <!-- Conteúdo principal -->
     <main class="flex-grow p-8 overflow-x-auto">
         <div class="flex items-center justify-between mb-6">
             <h2 class="text-2xl font-bold text-[#f28c28] flex items-center gap-2">
@@ -53,23 +51,21 @@
             </a>
         </div>
 
-        <!-- Formulário de Busca -->
         <form th:action="@{/clientes/listar}" method="get" class="flex items-center gap-2 mb-6 max-w-md">
             <input type="text" name="q" th:value="${q}" placeholder="Buscar por nome..."
-                   class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]" />
+                   class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
             <button type="submit"
                     class="px-4 py-2 bg-[#f4a734] text-white rounded-r-md hover:bg-[#e69320] transition">
                 Buscar
             </button>
         </form>
 
-        <!-- Tabela de Clientes -->
         <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
             <thead class="bg-[#fff3e0] text-[#f28c28]">
             <tr>
                 <th class="px-6 py-4 text-left">Nome</th>
                 <th class="px-6 py-4 text-left">Email</th>
-                <th class="px-6 py-4 text-left">CPF</th>         <!-- coluna nova -->
+                <th class="px-6 py-4 text-left">CPF</th>
                 <th class="px-6 py-4 text-left">Telefone</th>
                 <th class="px-6 py-4 text-center">Ações</th>
             </tr>
@@ -78,7 +74,7 @@
             <tr th:each="cliente : ${clientes}" class="border-b hover:bg-gray-50">
                 <td class="px-6 py-4" th:text="${cliente.nome}">Nome</td>
                 <td class="px-6 py-4" th:text="${cliente.email}">Email</td>
-                <td class="px-6 py-4" th:text="${cliente.cpf}">000.000.000-00</td> <!-- mostra o CPF -->
+                <td class="px-6 py-4" th:text="${cliente.cpf}">000.000.000-00</td>
                 <td class="px-6 py-4" th:text="${cliente.telefone}">Telefone</td>
                 <td class="px-6 py-4 flex justify-center gap-4">
                     <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}"

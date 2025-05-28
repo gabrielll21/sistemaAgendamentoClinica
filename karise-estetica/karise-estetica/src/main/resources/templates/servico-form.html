@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Karise Estética - Criar Serviço</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +16,6 @@
 </header>
 
 <div class="flex h-[calc(100vh-80px)]">
-    <!-- Menu lateral -->
     <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
         <ul class="space-y-6 text-[#f28c28] font-medium">
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
@@ -42,53 +41,53 @@
         </ul>
     </nav>
 
-    <!-- Conteúdo principal -->
-    <main class="flex-1 p-10 overflow-y-auto">
-        <div class="max-w-xl mx-auto">
+    <main class="flex-1 p-8 overflow-y-auto">
+        <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-6"
+                th:text="${servico.id} != null ? 'Editar Serviço' : 'Cadastrar Novo Serviço'">Cadastrar Novo
+                Serviço</h2>
 
-            <!-- Título -->
-            <div class="text-xl text-[#e65100] font-semibold mb-6 flex items-center justify-center gap-2">
-                <i data-lucide="plus-circle"></i> Criar Novo Serviço
-            </div>
-
-            <!-- Formulário -->
-            <form th:action="@{/servicos/salvar}" th:object="${servico}" method="post"
-                  class="bg-white p-8 rounded-lg shadow-md space-y-6 form-agendamento">
+            <form th:action="@{/servicos/salvar}" th:object="${servico}" method="post" class="space-y-4">
+                <input type="hidden" th:field="*{id}"/>
 
                 <div>
-                    <label for="nome" class="block font-bold mb-2">Nome do Serviço:</label>
-                    <input type="text" id="nome" th:field="*{nome}" required
-                           class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none"/>
+                    <label class="block font-semibold">Nome do Serviço:</label>
+                    <input type="text" th:field="*{nome}" required
+                           class="w-full px-4 py-2 border rounded bg-gray-50"/>
+                    <div class="text-red-500" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
                 </div>
 
                 <div>
-                    <label for="descricao" class="block font-bold mb-2">Descrição:</label>
-                    <textarea id="descricao" th:field="*{descricao}" required
-                              class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none"></textarea>
+                    <label class="block font-semibold">Descrição:</label>
+                    <textarea th:field="*{descricao}" required
+                              class="w-full px-4 py-2 border rounded bg-gray-50"></textarea>
+                    <div class="text-red-500" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
                 </div>
 
                 <div>
-                    <label for="preco" class="block font-bold mb-2">Preço (R$):</label>
-                    <input type="number" id="preco" step="0.01" th:field="*{preco}" required
-                           class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none"/>
+                    <label class="block font-semibold">Preço (R$):</label>
+                    <input type="number" step="0.01" th:field="*{preco}" required
+                           class="w-full px-4 py-2 border rounded bg-gray-50"/>
+                    <div class="text-red-500" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></div>
                 </div>
 
                 <div>
-                    <label for="duracaoEmMinutos" class="block font-bold mb-2">Duração (minutos):</label>
-                    <input type="number" id="duracaoEmMinutos" th:field="*{duracaoEmMinutos}" required
-                           class="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-50 focus:outline-none"/>
+                    <label class="block font-semibold">Duração (min):</label>
+                    <input type="number" th:field="*{duracaoEmMinutos}" required
+                           class="w-full px-4 py-2 border rounded bg-gray-50"/>
+                    <div class="text-red-500" th:if="${#fields.hasErrors('duracaoEmMinutos')}"
+                         th:errors="*{duracaoEmMinutos}"></div>
                 </div>
 
                 <button type="submit"
-                        class="w-full py-3 bg-[#ff9800] text-white rounded-md font-semibold flex justify-center items-center gap-2 hover:bg-[#fb8c00] transition duration-300">
-                    <i data-lucide="check-circle"></i> Cadastrar Serviço
+                        class="w-full bg-[#f4a734] text-white py-2 rounded font-bold hover:bg-[#e69320] transition">
+                    Salvar
                 </button>
+                <a th:href="@{/servicos/listar}"
+                   class="block text-center mt-4 text-gray-500 hover:underline">
+                    Voltar para lista
+                </a>
             </form>
-
-            <div class="text-center mt-4">
-                <a th:href="@{/servicos/listar}" class="text-[#e69320] hover:underline">Voltar para lista de serviços</a>
-            </div>
-
         </div>
     </main>
 </div>

@@ -8,18 +8,15 @@ public class CPFValidator implements ConstraintValidator<CPF, String> {
 
     @Override
     public boolean isValid(String cpf, ConstraintValidatorContext context) {
-        if (cpf == null) return true;             // deixe @NotBlank cuidar disso
+        if (cpf == null) return true;
         String digits = cpf.replaceAll("\\D+", "");
         if (digits.length() != 11) return false;
 
-        // não pode ser sequência de mesmo dígito
         if (digits.matches("(\\d)\\1{10}")) return false;
 
         try {
             int[] nums = digits.chars().map(c -> c - '0').toArray();
-            // calcular 1º dígito verificador
-            if (calc(nums, 9)  != nums[9])  return false;
-            // calcular 2º dígito verificador
+            if (calc(nums, 9) != nums[9]) return false;
             if (calc(nums, 10) != nums[10]) return false;
         } catch (Exception e) {
             return false;

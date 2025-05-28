@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.karise_estetica.validation.CPF;
 
 @Entity
 @Data
@@ -26,7 +25,6 @@ public class Cliente {
     @Column(unique = true)
     private String email;
 
-    //@CPF(message = "CPF inválido")
     @NotBlank(message = "O CPF é obrigatório")
     @Size(min = 11, max = 14, message = "O CPF deve ter entre 11 e 14 caracteres (incluindo pontos)")
     @Column(unique = true)

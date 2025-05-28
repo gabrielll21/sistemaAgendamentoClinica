@@ -14,34 +14,37 @@ import org.springframework.web.bind.annotation.*;
 public class ServicoController {
 
     @Autowired
-    private ServicoService servicoService;
+    private ServicoService service;
 
-    @GetMapping("/novo")
-    public String mostrarFormularioCadastro(Model model) {
-        model.addAttribute("servico", new Servico());
+    @GetMapping({"/novo", "/editar/{id}"})
+    public String form(@PathVariable(required = false) Long id, Model model) {
+        if (id != null) {
+            service.buscarPorId(id).ifPresent(s -> model.addAttribute("servico", s));
+        } else {
+            model.addAttribute("servico", new Servico());
+        }
         return "servico-form";
     }
 
     @PostMapping("/salvar")
-    public String salvarServico(@Valid @ModelAttribute("servico") Servico servico,
-                                BindingResult result,
-                                Model model) {
+    public String salvar(@Valid @ModelAttribute("servico") Servico servico,
+                         BindingResult result) {
         if (result.hasErrors()) {
             return "servico-form";
         }
-        servicoService.salvar(servico);
+        service.salvar(servico);
         return "redirect:/servicos/listar";
     }
 
     @GetMapping("/listar")
-    public String listarServicos(Model model) {
-        model.addAttribute("servicos", servicoService.listarTodos());
+    public String listar(Model model) {
+        model.addAttribute("servicos", service.listarTodos());
         return "servico-lista";
     }
 
-    @GetMapping("/deletar/{id}")
-    public String deletarServico(@PathVariable Long id) {
-        servicoService.deletar(id);
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Long id) {
+        service.deletar(id);
         return "redirect:/servicos/listar";
     }
 }

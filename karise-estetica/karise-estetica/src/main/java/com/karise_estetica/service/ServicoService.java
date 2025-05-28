@@ -12,21 +12,21 @@ import java.util.Optional;
 public class ServicoService {
 
     @Autowired
-    private ServicoRepository servicoRepository;
+    private ServicoRepository repository;
 
     public Servico salvar(Servico servico) {
-        return servicoRepository.save(servico);
+        return repository.save(servico);
     }
 
     public List<Servico> listarTodos() {
-        return servicoRepository.findAll();
+        return repository.findAll();
     }
 
     public Optional<Servico> buscarPorId(Long id) {
-        return servicoRepository.findById(id);
+        return repository.findById(id);
     }
 
     public void deletar(Long id) {
-        servicoRepository.deleteById(id);
+        repository.deleteById(id);
     }
 }

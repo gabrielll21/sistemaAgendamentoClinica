@@ -1,87 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Karise Estética – Profissionais Cadastrados</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Karise Estética – Profissionais Cadastrados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-[#fffdf9] text-gray-800 font-sans">
 <header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold">
-  <div class="flex justify-center items-center gap-2">
-    <span>KARISE ESTÉTICA</span>
-  </div>
+    <div class="flex justify-center items-center gap-2">
+        <span>KARISE ESTÉTICA</span>
+    </div>
 </header>
 
 <div class="flex h-[calc(100vh-80px)]">
-  <!-- Menu Lateral -->
-  <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
-    <ul class="space-y-6 text-[#f28c28] font-medium">
-      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-        <i data-lucide="home"></i>
-        <a href="/" th:href="@{/}">Início</a>
-      </li>
-      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-        <i data-lucide="calendar-days"></i>
-        <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
-      </li>
-      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-        <i data-lucide="users"></i>
-        <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
-      </li>
-      <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-        <i data-lucide="scissors"></i>
-        <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
-      </li>
-      <li class="flex items-center gap-2 text-[#e69320] cursor-pointer">
-        <i data-lucide="settings"></i>
-        <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
-      </li>
-    </ul>
-  </nav>
+    <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
+        <ul class="space-y-6 text-[#f28c28] font-medium">
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="home"></i>
+                <a href="/" th:href="@{/}">Início</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="calendar-days"></i>
+                <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="users"></i>
+                <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
+            </li>
+            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
+                <i data-lucide="scissors"></i>
+                <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
+            </li>
+            <li class="flex items-center gap-2 text-[#e69320] cursor-pointer">
+                <i data-lucide="settings"></i>
+                <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
+            </li>
+        </ul>
+    </nav>
 
-  <!-- Conteúdo principal -->
-  <main class="flex-grow p-8 overflow-x-auto">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-bold text-[#f28c28] flex items-center gap-2">
-        <i data-lucide="users"></i> Profissionais Cadastrados
-      </h2>
-      <a href="/profissionais/novo" th:href="@{/profissionais/novo}"
-         class="bg-[#f4a734] text-white px-4 py-2 rounded-md hover:bg-[#e69320] flex items-center gap-2 transition">
-        <i data-lucide="plus-circle"></i> Novo Profissional
-      </a>
-    </div>
+    <main class="flex-1 p-8 overflow-x-auto">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-[#f28c28] flex items-center gap-2">
+                <i data-lucide="settings"></i> Profissionais Cadastrados
+            </h2>
+            <a th:href="@{/profissionais/novo}"
+               class="bg-[#f4a734] text-white px-4 py-2 rounded hover:bg-[#e69320] flex items-center gap-2 transition">
+                <i data-lucide="plus-circle"></i> Novo Profissional
+            </a>
+        </div>
 
-    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-      <thead class="bg-[#fff3e0] text-[#f28c28]">
-      <tr>
-        <th class="px-6 py-4 text-left">ID</th>
-        <th class="px-6 py-4 text-left">Nome</th>
-        <th class="px-6 py-4 text-left">Especialidade</th>
-        <th class="px-6 py-4 text-center">Ações</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="profissional : ${profissionais}" class="border-b hover:bg-gray-50">
-        <td class="px-6 py-4" th:text="${profissional.id}">1</td>
-        <td class="px-6 py-4" th:text="${profissional.nome}">Nome</td>
-        <td class="px-6 py-4" th:text="${profissional.especialidade}">Especialidade</td>
-        <td class="px-6 py-4 flex justify-center gap-4">
-          <a th:href="@{/profissionais/editar/{id}(id=${profissional.id})}"
-             class="text-blue-600 hover:underline">Editar</a>
-          <a th:href="@{/profissionais/deletar/{id}(id=${profissional.id})}"
-             class="text-red-600 hover:underline"
-             onclick="return confirm('Tem certeza que deseja excluir este profissional?')">Excluir</a>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </main>
+        <table class="min-w-full bg-white shadow rounded-lg overflow-hidden">
+            <thead class="bg-[#fff3e0] text-[#f28c28]">
+            <tr>
+                <th class="px-6 py-4 text-left">ID</th>
+                <th class="px-6 py-4 text-left">Nome</th>
+                <th class="px-6 py-4 text-left">Especialidade</th>
+                <th class="px-6 py-4 text-center">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${profissionais}" class="border-b hover:bg-gray-50">
+                <td class="px-6 py-4" th:text="${p.id}">1</td>
+                <td class="px-6 py-4" th:text="${p.nome}">Nome</td>
+                <td class="px-6 py-4" th:text="${p.especialidade}">Especialidade</td>
+                <td class="px-6 py-4 flex justify-center gap-4">
+                    <a th:href="@{/profissionais/editar/{id}(id=${p.id})}"
+                       class="text-blue-600 hover:underline">Editar</a>
+                    <a th:href="@{/profissionais/excluir/{id}(id=${p.id})}"
+                       onclick="return confirm('Excluir este profissional?')"
+                       class="text-red-600 hover:underline">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
 </div>
 
 <script>
-  lucide.createIcons();
+    lucide.createIcons();
 </script>
 </body>
 </html>

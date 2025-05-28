@@ -40,7 +40,6 @@
         </ul>
     </nav>
 
-    <!-- Conteúdo principal -->
     <main class="flex-grow p-8 overflow-y-auto">
         <div class="max-w-lg mx-auto bg-white shadow-md rounded p-8">
             <h2 class="text-2xl font-semibold mb-6"
@@ -49,10 +48,8 @@
             </h2>
 
             <form th:action="@{/clientes/salvar}" th:object="${cliente}" method="post" class="space-y-4">
-                <!-- oculto: id -->
                 <input type="hidden" th:field="*{id}"/>
 
-                <!-- Nome -->
                 <div>
                     <label class="block font-semibold">Nome:</label>
                     <input type="text" th:field="*{nome}" required
@@ -60,7 +57,6 @@
                     <div class="text-red-500" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
                 </div>
 
-                <!-- Email -->
                 <div>
                     <label class="block font-semibold">Email:</label>
                     <input type="email" th:field="*{email}" required
@@ -68,7 +64,6 @@
                     <div class="text-red-500" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                 </div>
 
-                <!-- CPF -->
                 <div>
                     <label class="block font-semibold">CPF:</label>
                     <input type="text"
@@ -78,11 +73,10 @@
                            class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-50"/>
                     <div class="text-red-500"
                          th:if="${#fields.hasErrors('cpf')}"
-                         th:errors="*{cpf}">CPF inválido</div>
+                         th:errors="*{cpf}">CPF inválido
+                    </div>
                 </div>
 
-
-                <!-- Telefone -->
                 <div>
                     <label class="block font-semibold">Telefone:</label>
                     <input type="text" th:field="*{telefone}" required
@@ -90,7 +84,6 @@
                     <div class="text-red-500" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
                 </div>
 
-                <!-- Botões -->
                 <button type="submit"
                         class="w-full bg-[#f4a734] text-white py-2 rounded-md font-bold hover:bg-[#e69320] transition duration-300">
                     Salvar

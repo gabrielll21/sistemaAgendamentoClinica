@@ -54,7 +54,7 @@ public class ClienteController {
             clientes = clienteService.listarTodos();
         }
         model.addAttribute("clientes", clientes);
-        model.addAttribute("q", busca); // mantém o termo no input
+        model.addAttribute("q", busca);
         return "cliente-lista";
     }
 

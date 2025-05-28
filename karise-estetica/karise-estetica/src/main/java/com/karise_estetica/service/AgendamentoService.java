@@ -12,21 +12,22 @@ import java.util.Optional;
 public class AgendamentoService {
 
     @Autowired
-    private AgendamentoRepository agendamentoRepository;
+    private AgendamentoRepository repository;
 
     public Agendamento salvar(Agendamento agendamento) {
-        return agendamentoRepository.save(agendamento);
+        return repository.save(agendamento);
     }
 
     public List<Agendamento> listarTodos() {
-        return agendamentoRepository.findAll();
+        return repository.findAll();
     }
 
     public Optional<Agendamento> buscarPorId(Long id) {
-        return agendamentoRepository.findById(id);
+        return repository.findById(id);
     }
 
     public void deletar(Long id) {
-        agendamentoRepository.deleteById(id);
+        repository.deleteById(id);
     }
 }
+
