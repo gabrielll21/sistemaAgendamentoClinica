@@ -2,31 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Usuário</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cadastro de Usuário - Karise Estética</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-<h1>Cadastro de Usuário</h1>
+<body class="bg-[#fffdf9] text-gray-800 font-sans">
 
-<div th:if="${error}" style="color: red;">
-    <p th:text="${error}"></p>
-</div>
+<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold shadow-lg">
+    <span>KARISE ESTÉTICA</span>
+</header>
 
-<form th:action="@{/cadastro}" method="post">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" required/>
-    <br/><br/>
+<main class="flex justify-center items-center h-[calc(100vh-80px)]">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-3xl font-bold text-[#f28c28] mb-6 text-center">Cadastro de Usuário</h1>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required/>
-    <br/><br/>
+        <div th:if="${error}" class="text-red-500 mb-4">
+            <p th:text="${error}"></p>
+        </div>
 
-    <label for="senha">Senha:</label>
-    <input type="password" id="senha" name="senha" required/>
-    <br/><br/>
+        <form th:action="@{/cadastro}" method="post" class="space-y-4">
+            <div>
+                <label for="nome" class="block font-semibold text-[#f28c28]">Nome:</label>
+                <input type="text" id="nome" name="nome" required
+                       class="w-full px-4 py-2 border rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
+            </div>
 
-    <input type="hidden" name="tipo" value="CLIENTE"/>
+            <div>
+                <label for="email" class="block font-semibold text-[#f28c28]">Email:</label>
+                <input type="email" id="email" name="email" required
+                       class="w-full px-4 py-2 border rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
+            </div>
 
-    <button type="submit">Cadastrar</button>
-</form>
+            <div>
+                <label for="senha" class="block font-semibold text-[#f28c28]">Senha:</label>
+                <input type="password" id="senha" name="senha" required
+                       class="w-full px-4 py-2 border rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
+            </div>
+
+            <input type="hidden" name="tipo" value="CLIENTE"/>
+
+            <button type="submit"
+                    class="w-full bg-[#f4a734] text-white py-2 rounded font-bold hover:bg-[#e69320] transition duration-300 ease-in-out">
+                Cadastrar
+            </button>
+        </form>
+    </div>
+</main>
+
+<script>
+    lucide.createIcons();
+</script>
 </body>
 </html>

@@ -8,15 +8,15 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-[#fffdf9] text-gray-800 font-sans">
-<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold">
+<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold shadow-lg">
     <div class="flex justify-center items-center gap-2">
         <span>KARISE ESTÉTICA</span>
     </div>
 </header>
 
 <div class="flex h-[calc(100vh-80px)]">
-    <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
-        <ul class="space-y-6 text-[#f28c28] font-medium">
+<nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-lg">
+<ul class="space-y-4 text-[#f28c28] font-medium">
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="home"></i>
                 <a href="/" th:href="@{/}">Início</a>
@@ -42,7 +42,7 @@
 
     <main class="flex-grow p-8 overflow-y-auto">
         <div class="max-w-lg mx-auto bg-white shadow-md rounded p-8">
-            <h2 class="text-2xl font-semibold mb-6"
+<h2 class="text-3xl font-semibold mb-6 text-[#f28c28]"
                 th:text="${cliente.id} == null ? 'Cadastrar Novo Cliente' : 'Editar Cliente'">
                 Cadastrar/Editar Cliente
             </h2>
@@ -51,9 +51,9 @@
                 <input type="hidden" th:field="*{id}"/>
 
                 <div>
-                    <label class="block font-semibold">Nome:</label>
-                    <input type="text" th:field="*{nome}" required
-                           class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-50"/>
+<label class="block font-semibold text-[#f28c28]">Nome:</label>
+<input type="text" th:field="*{nome}" required
+                           class="w-full px-4 py-2 border rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
                     <div class="text-red-500" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
                 </div>
 
@@ -84,8 +84,8 @@
                     <div class="text-red-500" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
                 </div>
 
-                <button type="submit"
-                        class="w-full bg-[#f4a734] text-white py-2 rounded-md font-bold hover:bg-[#e69320] transition duration-300">
+<button type="submit"
+                        class="w-full bg-[#f4a734] text-white py-2 rounded font-bold hover:bg-[#e69320] transition duration-300 ease-in-out">
                     Salvar
                 </button>
                 <a href="/clientes/listar" th:href="@{/clientes/listar}"

@@ -8,15 +8,15 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-[#fffdf9] text-gray-800 font-sans">
-<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold">
+<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold shadow-lg">
     <div class="flex justify-center items-center gap-2">
         <span>KARISE ESTÉTICA</span>
     </div>
 </header>
 
 <div class="flex h-[calc(100vh-80px)]">
-    <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
-        <ul class="space-y-6 text-[#f28c28] font-medium">
+    <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-lg">
+        <ul class="space-y-4 text-[#f28c28] font-medium">
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="home"></i>
                 <a href="/" th:href="@{/}">Início</a>
@@ -40,18 +40,18 @@
         </ul>
     </nav>
 
-    <main class="flex-1 p-8 overflow-x-auto">
+    <main class="flex-1 p-8 overflow-x-auto bg-[#fffdf9]">
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-[#f28c28] flex items-center gap-2">
+            <h2 class="text-3xl font-bold text-[#f28c28] flex items-center gap-2">
                 <i data-lucide="scissors"></i> Serviços Cadastrados
             </h2>
             <a th:href="@{/servicos/novo}"
-               class="bg-[#f4a734] text-white px-4 py-2 rounded hover:bg-[#e69320] flex items-center gap-2 transition">
+               class="bg-[#f4a734] text-white px-4 py-2 rounded hover:bg-[#e69320] flex items-center gap-2 transition duration-300 ease-in-out">
                 <i data-lucide="plus-circle"></i> Novo Serviço
             </a>
         </div>
 
-        <table class="min-w-full bg-white shadow rounded-lg overflow-hidden">
+        <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
             <thead class="bg-[#fff3e0] text-[#f28c28]">
             <tr>
                 <th class="px-6 py-4 text-left">Nome</th>
@@ -62,17 +62,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="s : ${servicos}" class="border-b hover:bg-gray-50">
+            <tr th:each="s : ${servicos}" class="border-b hover:bg-gray-100 transition duration-200 ease-in-out">
                 <td class="px-6 py-4" th:text="${s.nome}">Nome</td>
                 <td class="px-6 py-4" th:text="${s.descricao}">Descrição</td>
                 <td class="px-6 py-4" th:text="${s.preco}">Preço</td>
                 <td class="px-6 py-4" th:text="${s.duracaoEmMinutos}">Duração</td>
                 <td class="px-6 py-4 flex justify-center gap-4">
                     <a th:href="@{/servicos/editar/{id}(id=${s.id})}"
-                       class="text-blue-600 hover:underline">Editar</a>
+                       class="text-blue-600 hover:underline flex items-center gap-1">
+                       <i data-lucide="edit"></i> Editar
+                    </a>
                     <a th:href="@{/servicos/excluir/{id}(id=${s.id})}"
                        onclick="return confirm('Deseja realmente excluir?')"
-                       class="text-red-600 hover:underline">Excluir</a>
+                       class="text-red-600 hover:underline flex items-center gap-1">
+                       <i data-lucide="trash-2"></i> Excluir
+                    </a>
                 </td>
             </tr>
             </tbody>

@@ -20,32 +20,32 @@
 </header>
 
 <div class="flex h-[calc(100vh-80px)]">
-    <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-md">
-        <ul class="space-y-6 text-[#f28c28] font-medium">
+<nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-lg flex flex-col justify-between">
+        <ul class="space-y-4 text-[#f28c28] font-medium">
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="home"></i>
                 <a href="/" th:href="@{/}">Início</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="calendar-days"></i>
-                <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
+                <a href="/agendamentos/listar" th:href="@{/agendamentos/listar}">Agenda</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="users"></i>
-                <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
+                <a href="/clientes/listar" th:href="@{/clientes/listar}">Clientes</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="scissors"></i>
-                <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
+                <a href="/servicos/listar" th:href="@{/servicos/listar}">Serviços</a>
             </li>
             <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
                 <i data-lucide="settings"></i>
-                <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
+                <a href="/profissionais/listar" th:href="@{/profissionais/listar}">Profissionais</a>
             </li>
         </ul>
     </nav>
 
-    <main class="flex-grow p-8 overflow-auto">
+<main class="flex-grow p-8 overflow-auto bg-[#fffdf9]">
         <h2 class="text-xl font-semibold mb-4">Agenda de Agendamentos</h2>
         <div id="calendar" class="bg-white p-6 shadow rounded-lg"></div>
     </main>
