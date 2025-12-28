@@ -3,90 +3,132 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Karise Estética - Criar Serviço</title>
+    <title>Serviço - Karise Estética</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-header { background: linear-gradient(135deg, #f4a734 0%, #e69320 100%); }
+        .sidebar-link { transition: all 0.3s ease; }
+        .sidebar-link:hover { transform: translateX(4px); }
+        .input-group { position: relative; }
+        .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #9ca3af; }
+        .input-field { padding-left: 48px; }
+    </style>
 </head>
-<body class="font-sans bg-[#fffdf9] text-gray-800">
-
-<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold shadow-lg">
-    <div class="flex justify-center items-center gap-2">
-        <span>KARISE ESTÉTICA</span>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800">
+<header class="gradient-header text-white py-5 px-8 shadow-xl">
+    <div class="flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <i data-lucide="sparkles" class="w-8 h-8"></i>
+            <h1 class="text-2xl font-bold tracking-wide">KARISE ESTÉTICA</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="text-sm opacity-90" th:text="${servico.id} != null ? 'Editar Serviço' : 'Novo Serviço'">Serviço</span>
+        </div>
     </div>
 </header>
 
-<div class="flex h-[calc(100vh-80px)]">
-    <nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-lg">
-        <ul class="space-y-4 text-[#f28c28] font-medium">
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="home"></i>
-                <a href="/" th:href="@{/}">Início</a>
+<div class="flex h-[calc(100vh-88px)]">
+    <nav class="w-64 bg-white h-full shadow-2xl flex flex-col justify-between py-8">
+        <ul class="space-y-2 px-4">
+            <li class="sidebar-link">
+                <a href="/" th:href="@{/}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#fff3e0] hover:text-[#f28c28] font-medium transition-all">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    <span>Início</span>
+                </a>
             </li>
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="calendar-days"></i>
-                <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
+            <li class="sidebar-link">
+                <a href="/agendamentos/listar" th:href="@{/agendamentos/listar}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#fff3e0] hover:text-[#f28c28] font-medium transition-all">
+                    <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                    <span>Agenda</span>
+                </a>
             </li>
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="users"></i>
-                <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
+            <li class="sidebar-link">
+                <a href="/clientes/listar" th:href="@{/clientes/listar}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#fff3e0] hover:text-[#f28c28] font-medium transition-all">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span>Clientes</span>
+                </a>
             </li>
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="scissors"></i>
-                <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
+            <li class="sidebar-link">
+                <a href="/servicos/listar" th:href="@{/servicos/listar}" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-[#f4a734] to-[#e69320] text-white font-medium shadow-md">
+                    <i data-lucide="scissors" class="w-5 h-5"></i>
+                    <span>Serviços</span>
+                </a>
             </li>
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="settings"></i>
-                <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
+            <li class="sidebar-link">
+                <a href="/profissionais/listar" th:href="@{/profissionais/listar}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#fff3e0] hover:text-[#f28c28] font-medium transition-all">
+                    <i data-lucide="user-check" class="w-5 h-5"></i>
+                    <span>Profissionais</span>
+                </a>
             </li>
         </ul>
     </nav>
 
-    <main class="flex-1 p-8 overflow-y-auto bg-[#fffdf9]">
-        <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
-            <h2 class="text-3xl font-semibold mb-6 text-[#f28c28]"
-                th:text="${servico.id} != null ? 'Editar Serviço' : 'Cadastrar Novo Serviço'">Cadastrar Novo
-                Serviço</h2>
+    <main class="flex-1 p-8 overflow-y-auto">
+        <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-purple-100 rounded-xl p-3">
+                    <i data-lucide="sparkles" class="w-6 h-6 text-purple-600" th:if="${servico.id} == null"></i>
+                    <i data-lucide="edit" class="w-6 h-6 text-purple-600" th:if="${servico.id} != null"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800"
+                        th:text="${servico.id} != null ? 'Editar Serviço' : 'Cadastrar Novo Serviço'">Cadastrar Novo Serviço</h2>
+                    <p class="text-gray-600 text-sm">Preencha os dados do serviço</p>
+                </div>
+            </div>
 
             <form th:action="@{/servicos/salvar}" th:object="${servico}" method="post" class="space-y-6">
                 <input type="hidden" th:field="*{id}"/>
 
-                <div>
-                    <label class="block font-semibold text-[#f28c28]">Nome do Serviço:</label>
+                <div class="input-group">
+                    <i data-lucide="scissors" class="input-icon w-5 h-5"></i>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Nome do Serviço</label>
                     <input type="text" th:field="*{nome}" required
-                           class="w-full px-4 py-2 border rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
-                    <div class="text-red-500" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+                           class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734] focus:border-[#f4a734] transition-all"/>
+                    <div class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
                 </div>
 
                 <div>
-                    <label class="block font-semibold text-[#f28c28]">Descrição:</label>
-                    <textarea th:field="*{descricao}" required
-                              class="w-full px-4 py-2 border rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"></textarea>
-                    <div class="text-red-500" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Descrição</label>
+                    <textarea th:field="*{descricao}" required rows="4"
+                              class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734] focus:border-[#f4a734] transition-all resize-none"
+                              placeholder="Descreva o serviço oferecido..."></textarea>
+                    <div class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
                 </div>
 
-                <div>
-                    <label class="block font-semibold text-[#f28c28]">Preço (R$):</label>
-                    <input type="number" step="0.01" th:field="*{preco}" required
-                           class="w-full px-4 py-2 border rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
-                    <div class="text-red-500" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="input-group">
+                        <i data-lucide="dollar-sign" class="input-icon w-5 h-5"></i>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Preço (R$)</label>
+                        <input type="number" step="0.01" th:field="*{preco}" required
+                               class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734] focus:border-[#f4a734] transition-all"/>
+                        <div class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></div>
+                    </div>
+
+                    <div class="input-group">
+                        <i data-lucide="clock" class="input-icon w-5 h-5"></i>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Duração (minutos)</label>
+                        <input type="number" th:field="*{duracaoEmMinutos}" required
+                               class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734] focus:border-[#f4a734] transition-all"/>
+                        <div class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('duracaoEmMinutos')}" th:errors="*{duracaoEmMinutos}"></div>
+                    </div>
                 </div>
 
-                <div>
-                    <label class="block font-semibold text-[#f28c28]">Duração (min):</label>
-                    <input type="number" th:field="*{duracaoEmMinutos}" required
-                           class="w-full px-4 py-2 border rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
-                    <div class="text-red-500" th:if="${#fields.hasErrors('duracaoEmMinutos')}"
-                         th:errors="*{duracaoEmMinutos}"></div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit"
+                            class="flex-1 bg-gradient-to-r from-[#f4a734] to-[#e69320] text-white py-3.5 rounded-xl font-semibold hover:from-[#e69320] hover:to-[#d6891f] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <i data-lucide="save" class="w-5 h-5"></i> Salvar Serviço
+                    </button>
+                    <a th:href="@{/servicos/listar}"
+                       class="px-6 py-3.5 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all duration-300 font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i> Voltar
+                    </a>
                 </div>
-
-                <button type="submit"
-                        class="w-full bg-[#f4a734] text-white py-2 rounded font-bold hover:bg-[#e69320] transition duration-300 ease-in-out">
-                    Salvar
-                </button>
-                <a th:href="@{/servicos/listar}"
-                   class="block text-center mt-4 text-gray-500 hover:underline">
-                    Voltar para lista
-                </a>
             </form>
         </div>
     </main>
@@ -95,6 +137,5 @@
 <script>
     lucide.createIcons();
 </script>
-
 </body>
 </html>

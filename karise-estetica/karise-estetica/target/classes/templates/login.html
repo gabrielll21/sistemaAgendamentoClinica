@@ -4,40 +4,88 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Karise Estética - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #f4a734 0%, #e69320 50%, #d6891f 100%);
+        }
+        .login-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .input-group {
+            position: relative;
+        }
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        .input-field {
+            padding-left: 48px;
+        }
+    </style>
 </head>
-<body class="h-screen bg-cover bg-center flex items-center justify-start pl-20"
-      style="background-image: url('https://via.placeholder.com/1920x1080')">
+<body class="h-screen flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#f4a734] via-[#e69320] to-[#d6891f] opacity-90"></div>
+    
+    <div class="login-card relative z-10 bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#f4a734] to-[#e69320] rounded-2xl mb-4 shadow-lg">
+                <i data-lucide="sparkles" class="w-10 h-10 text-white"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Bem-vindo</h1>
+            <p class="text-gray-600">Karise Estética - Sistema de Gestão</p>
+        </div>
 
-<div class="bg-white p-8 rounded-2xl shadow-lg w-80">
-    <h1 class="text-2xl text-[#f28c28] text-center mb-5 font-semibold">Login</h1>
-    <div th:if="${param.error}">
-        <p class="text-red-600 text-sm mb-2">Usuário inexistente ou senha inválida</p>
+        <div th:if="${param.error}" class="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
+            <div class="flex items-center gap-2">
+                <i data-lucide="alert-circle" class="w-5 h-5 text-red-600"></i>
+                <p class="text-red-700 text-sm font-medium">Usuário inexistente ou senha inválida</p>
+            </div>
+        </div>
+
+        <form th:action="@{/login}" method="post" class="space-y-5">
+            <div class="input-group">
+                <i data-lucide="user" class="input-icon w-5 h-5"></i>
+                <input type="text" id="username" name="username" placeholder="Digite seu usuário" required
+                       class="input-field w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 text-base focus:outline-none focus:ring-2 focus:ring-[#f4a734] focus:border-[#f4a734] transition-all"/>
+            </div>
+
+            <div class="input-group">
+                <i data-lucide="lock" class="input-icon w-5 h-5"></i>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required
+                       class="input-field w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 text-base focus:outline-none focus:ring-2 focus:ring-[#f4a734] focus:border-[#f4a734] transition-all"/>
+            </div>
+
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="rounded border-gray-300 text-[#f4a734] focus:ring-[#f4a734]">
+                    <span class="text-gray-600">Lembrar-me</span>
+                </label>
+                <a href="#" class="text-[#f4a734] hover:text-[#e69320] font-medium transition-colors">Esqueceu a senha?</a>
+            </div>
+
+            <button type="submit"
+                    class="w-full py-3.5 mt-6 bg-gradient-to-r from-[#f4a734] to-[#e69320] text-white rounded-xl text-base font-semibold hover:from-[#e69320] hover:to-[#d6891f] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                Entrar
+            </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+            <p class="text-xs text-gray-500">© 2025 Karise Estética. Todos os direitos reservados.</p>
+        </div>
     </div>
 
-<form th:action="@{/login}" method="post" class="space-y-6">
-        <div>
-            <label for="username" class="font-bold text-gray-800 block mb-1">Usuário</label>
-            <input type="text" id="username" name="username" placeholder="Digite seu usuário" required
-                   class="w-full px-3 py-2 rounded-md border border-gray-300 bg-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
-        </div>
-
-        <div>
-            <label for="password" class="font-bold text-gray-800 block mb-1">Senha</label>
-            <input type="password" id="password" name="password" placeholder="Digite sua senha" required
-                   class="w-full px-3 py-2 rounded-md border border-gray-300 bg-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
-        </div>
-
-        <div class="text-sm mt-2 text-left">
-            <a href="#" class="text-gray-600 hover:underline">Esqueceu a senha?</a>
-        </div>
-
-        <button type="submit"
-                class="w-full py-3 mt-6 bg-[#f4a734] text-white rounded-md text-base font-bold hover:bg-[#e69320] transition duration-300">
-            Entrar
-        </button>
-    </form>
-</div>
-
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

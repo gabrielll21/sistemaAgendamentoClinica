@@ -3,95 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Karise Estética - Lista de Clientes</title>
+    <title>Karise Estética - Clientes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-header { background: linear-gradient(135deg, #f4a734 0%, #e69320 100%); }
+        .sidebar-link { transition: all 0.3s ease; }
+        .sidebar-link:hover { transform: translateX(4px); }
+        .table-row { transition: all 0.2s ease; }
+        .table-row:hover { background-color: #f9fafb; transform: scale(1.01); }
+    </style>
 </head>
-<body class="bg-[#fffdf9] text-gray-800 font-sans">
-<header class="bg-[#f4a734] text-white py-4 px-6 text-center text-2xl font-bold shadow-lg">
-    <div class="flex justify-center items-center gap-2">
-        <span>KARISE ESTÉTICA</span>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800">
+<header class="gradient-header text-white py-5 px-8 shadow-xl">
+    <div class="flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <i data-lucide="sparkles" class="w-8 h-8"></i>
+            <h1 class="text-2xl font-bold tracking-wide">KARISE ESTÉTICA</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="text-sm opacity-90">Gestão de Clientes</span>
+        </div>
     </div>
 </header>
 
-<div class="flex h-[calc(100vh-80px)]">
-<nav class="w-[220px] bg-[#fff3e0] h-full p-8 shadow-lg">
-<ul class="space-y-4 text-[#f28c28] font-medium">
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="home"></i>
-                <a href="/" th:href="@{/}">Início</a>
-            </li>
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="calendar-days"></i>
-                <a href="/agendamentos" th:href="@{/agendamentos/novo}">Agenda</a>
-            </li>
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="users"></i>
-                <a href="/clientes" th:href="@{/clientes/novo}">Clientes</a>
-            </li>
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="scissors"></i>
-                <a href="/servicos" th:href="@{/servicos/novo}">Serviços</a>
-            </li>
-            <li class="flex items-center gap-2 hover:text-[#e69320] cursor-pointer">
-                <i data-lucide="settings"></i>
-                <a href="/profissionais" th:href="@{/profissionais/novo}">Profissionais</a>
-            </li>
-        </ul>
-    </nav>
-
-<main class="flex-grow p-8 overflow-x-auto bg-[#fffdf9]">
-        <div class="flex items-center justify-between mb-6">
-<h2 class="text-3xl font-bold text-[#f28c28] flex items-center gap-2">
-                <i data-lucide="users"></i> Clientes Cadastrados
-            </h2>
-<a href="/clientes/novo" th:href="@{/clientes/novo}"
-               class="bg-[#f4a734] text-white px-4 py-2 rounded hover:bg-[#e69320] flex items-center gap-2 transition duration-300 ease-in-out">
-                <i data-lucide="plus-circle"></i> Novo Cliente
+<div class="flex h-[calc(100vh-88px)]">
+<nav class="w-64 bg-white h-full shadow-2xl flex flex-col justify-between py-8">
+    <ul class="space-y-2 px-4">
+        <li class="sidebar-link">
+            <a href="/" th:href="@{/}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#fff3e0] hover:text-[#f28c28] font-medium transition-all">
+                <i data-lucide="home" class="w-5 h-5"></i>
+                <span>Início</span>
             </a>
-        </div>
+        </li>
+        <li class="sidebar-link">
+            <a href="/agendamentos/listar" th:href="@{/agendamentos/listar}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#fff3e0] hover:text-[#f28c28] font-medium transition-all">
+                <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                <span>Agenda</span>
+            </a>
+        </li>
+        <li class="sidebar-link">
+            <a href="/clientes/listar" th:href="@{/clientes/listar}" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-[#f4a734] to-[#e69320] text-white font-medium shadow-md">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span>Clientes</span>
+            </a>
+        </li>
+        <li class="sidebar-link">
+            <a href="/servicos/listar" th:href="@{/servicos/listar}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#fff3e0] hover:text-[#f28c28] font-medium transition-all">
+                <i data-lucide="scissors" class="w-5 h-5"></i>
+                <span>Serviços</span>
+            </a>
+        </li>
+        <li class="sidebar-link">
+            <a href="/profissionais/listar" th:href="@{/profissionais/listar}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#fff3e0] hover:text-[#f28c28] font-medium transition-all">
+                <i data-lucide="user-check" class="w-5 h-5"></i>
+                <span>Profissionais</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
-<form th:action="@{/clientes/listar}" method="get" class="flex items-center gap-2 mb-6 max-w-md">
-            <input type="text" name="q" th:value="${q}" placeholder="Buscar por nome..."
-                   class="flex-grow px-4 py-2 border rounded-l bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734]"/>
+<main class="flex-grow p-8 overflow-x-auto">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 flex items-center gap-3 mb-2">
+                <div class="bg-blue-100 rounded-xl p-2">
+                    <i data-lucide="users" class="w-6 h-6 text-blue-600"></i>
+                </div>
+                Clientes Cadastrados
+            </h2>
+            <p class="text-gray-600 text-sm">Gerencie todos os seus clientes</p>
+        </div>
+        <a href="/clientes/novo" th:href="@{/clientes/novo}"
+           class="bg-gradient-to-r from-[#f4a734] to-[#e69320] text-white px-6 py-3 rounded-xl hover:from-[#e69320] hover:to-[#d6891f] flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium">
+            <i data-lucide="plus-circle" class="w-5 h-5"></i> Novo Cliente
+        </a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <form th:action="@{/clientes/listar}" method="get" class="flex items-center gap-3">
+            <div class="flex-1 relative">
+                <i data-lucide="search" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                <input type="text" name="q" th:value="${q}" placeholder="Buscar cliente por nome..."
+                       class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#f4a734] focus:border-[#f4a734] transition-all"/>
+            </div>
             <button type="submit"
-                    class="px-4 py-2 bg-[#f4a734] text-white rounded-r hover:bg-[#e69320] transition duration-300 ease-in-out">
-                Buscar
+                    class="px-6 py-3 bg-gradient-to-r from-[#f4a734] to-[#e69320] text-white rounded-xl hover:from-[#e69320] hover:to-[#d6891f] transition-all duration-300 shadow-md hover:shadow-lg font-medium flex items-center gap-2">
+                <i data-lucide="search" class="w-5 h-5"></i> Buscar
             </button>
         </form>
+    </div>
 
-<table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
-            <thead class="bg-[#fff3e0] text-[#f28c28]">
-            <tr>
-                <th class="px-6 py-4 text-left">Nome</th>
-                <th class="px-6 py-4 text-left">Email</th>
-                <th class="px-6 py-4 text-left">CPF</th>
-                <th class="px-6 py-4 text-left">Telefone</th>
-                <th class="px-6 py-4 text-center">Ações</th>
-            </tr>
-            </thead>
-            <tbody>
-<tr th:each="cliente : ${clientes}" class="border-b hover:bg-gray-100 transition duration-200 ease-in-out">
-                <td class="px-6 py-4" th:text="${cliente.nome}">Nome</td>
-                <td class="px-6 py-4" th:text="${cliente.email}">Email</td>
-                <td class="px-6 py-4" th:text="${cliente.cpf}">000.000.000-00</td>
-                <td class="px-6 py-4" th:text="${cliente.telefone}">Telefone</td>
-                <td class="px-6 py-4 flex justify-center gap-4">
-<a th:href="@{/clientes/editar/{id}(id=${cliente.id})}"
-                       class="text-blue-600 hover:underline flex items-center gap-1">
-                       <i data-lucide="edit"></i> Editar
-                    </a>
-<a th:href="@{/clientes/excluir/{id}(id=${cliente.id})}"
-                       onclick="return confirm('Tem certeza que deseja excluir este cliente?')"
-                       class="text-red-600 hover:underline flex items-center gap-1">
-                       <i data-lucide="trash-2"></i> Excluir
-                    </a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-    </main>
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full">
+                <thead class="bg-gradient-to-r from-[#fff3e0] to-[#ffe0b2]">
+                <tr>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-[#f28c28] uppercase tracking-wider">Nome</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-[#f28c28] uppercase tracking-wider">Email</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-[#f28c28] uppercase tracking-wider">CPF</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-[#f28c28] uppercase tracking-wider">Telefone</th>
+                    <th class="px-6 py-4 text-center text-sm font-semibold text-[#f28c28] uppercase tracking-wider">Ações</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                <tr th:each="cliente : ${clientes}" class="table-row">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-blue-100 rounded-full p-2">
+                                <i data-lucide="user" class="w-4 h-4 text-blue-600"></i>
+                            </div>
+                            <span class="font-medium text-gray-900" th:text="${cliente.nome}">Nome</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-600" th:text="${cliente.email}">Email</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-600 font-mono text-sm" th:text="${cliente.cpf}">000.000.000-00</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-600" th:text="${cliente.telefone}">Telefone</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                        <div class="flex justify-center gap-3">
+                            <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}"
+                               class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-all duration-200 font-medium text-sm">
+                                <i data-lucide="edit" class="w-4 h-4"></i> Editar
+                            </a>
+                            <a th:href="@{/clientes/excluir/{id}(id=${cliente.id})}"
+                               onclick="return confirm('Tem certeza que deseja excluir este cliente?')"
+                               class="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-all duration-200 font-medium text-sm">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i> Excluir
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 </div>
 
 <script>
